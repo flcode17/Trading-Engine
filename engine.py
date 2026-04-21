@@ -24,7 +24,7 @@ def backtest(start_date: str, end_date: str) -> list[dict]:
 
     print("\n=== BACKTEST SETUP ===")
     print(f"  Range:   {start_date} → {end_date}")
-    print(f"  Account: ${ACCOUNT_SIZE:,.2f}  (reference only — no fixed risk per trade)")
+    print(f"  Account: ${ACCOUNT_SIZE:,.2f}")
     print()
 
     # ------------------------------------------------------------------
@@ -35,13 +35,11 @@ def backtest(start_date: str, end_date: str) -> list[dict]:
     print()
 
     # ------------------------------------------------------------------
-    # 2. Determine which pairs we need and fetch their data
+    # 2. Fetch price data for both pairs
     # ------------------------------------------------------------------
-    need_usdjpy = len(calendar["red_folder"]) > 0
-
     print("[ 2/3 ] Fetching price data ...")
     eurusd_df = fetch_5min("EURUSD", start_date, end_date)
-    usdjpy_df = fetch_5min("USDJPY", start_date, end_date) if need_usdjpy else None
+    usdjpy_df = fetch_5min("USDJPY", start_date, end_date)
     print()
 
     # ------------------------------------------------------------------
@@ -54,7 +52,7 @@ def backtest(start_date: str, end_date: str) -> list[dict]:
                 for date, group in df.groupby("_date")}
 
     eurusd_by_day = split_by_day(eurusd_df)
-    usdjpy_by_day = split_by_day(usdjpy_df) if usdjpy_df is not None else {}
+    usdjpy_by_day = split_by_day(usdjpy_df)
 
     # ------------------------------------------------------------------
     # 4. Iterate trading days

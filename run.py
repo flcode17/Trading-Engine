@@ -15,8 +15,8 @@ from engine import backtest, ACCOUNT_SIZE, EURUSD_UNITS, USDJPY_UNITS
 # -----------------------------------------------------------------------
 # BACKTEST CONFIG — edit these before running
 # -----------------------------------------------------------------------
-START_DATE = "2025-01-01"   # "YYYY-MM-DD"
-END_DATE   = "2025-03-31"   # "YYYY-MM-DD"
+START_DATE = "2025-02-01"   # "YYYY-MM-DD"
+END_DATE   = "2025-02-28"   # "YYYY-MM-DD"
 # -----------------------------------------------------------------------
 
 
